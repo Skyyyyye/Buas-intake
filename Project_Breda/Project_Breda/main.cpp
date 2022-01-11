@@ -2,6 +2,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
+#include "Player.h"
 
     //initialize variables
 
@@ -10,29 +11,18 @@
     float dt;
 
     //sprites
-    sf::Texture character;
-    sf::Sprite player;
+    sf::Texture backGroundT;
+    sf::Sprite backGround;
 
+    //health variables
+    int PHealth;
 
-    void move() //movement
-    {
-        float vel = 100 * dt;
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+    void texture() {
+        if (!backGroundT.loadFromFile("test.png"))
         {
-            player.move(sf::Vector2f((vel), 0.f));
+                // error...
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-        {
-            player.move(sf::Vector2f((0), vel));
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-        {
-            player.move(sf::Vector2f((-vel), 0.f));
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
-        {
-            player.move(sf::Vector2f((0), -vel));
-        }
+        backGround.setTexture(backGroundT);
     }
 
 int main()
@@ -41,17 +31,11 @@ int main()
     // create the window
     sf::RenderWindow window(sf::VideoMode(900, 700), "My window");
 
-    //initiate sprites
-    if (!character.loadFromFile("player.png"))
-    {
-        // error...
-    }
-    character.setSmooth(true);
-    player.setTexture(character);
+    //initiate sprites and textures
+    texture();
+    PHealth = 100;
 
-
-
-
+    Player Player;
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -69,16 +53,19 @@ int main()
         dt = dtCLock.restart().asSeconds();
 
         //movement
-
-        move();
-
+        Player.move(dt);
 
         // clear the window with black color
         window.clear(sf::Color::Black);
 
         // draw everything here...
+        // 
+        //background drawing
+        window.draw(backGround);
 
-        window.draw(player);
+        //foreground drawing
+        Player.drawPlayer(window);
+
 
         // end the current frame
         window.display();
