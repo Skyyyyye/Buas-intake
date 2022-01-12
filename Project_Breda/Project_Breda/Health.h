@@ -1,11 +1,15 @@
 #pragma once
-class Health
+#include "Entity.h"
+
+class Health :
+	public Entity
 {
 public:
-	virtual void healthMin() {};
-	virtual void healthPlus() {};
-	virtual void health() {};
+	Health();
 private:
-	int health;
+
+protected:
+	int health = 100;
+	int EHealth[10];
 };
 

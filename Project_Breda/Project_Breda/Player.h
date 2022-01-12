@@ -3,7 +3,9 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
-class Player
+#include "Health.h"
+class Player: 
+	public Health
 {
 public:
 	Player();
@@ -13,5 +15,7 @@ public:
 private: 
 	sf::Texture character;
 	sf::Sprite playerSP;
+	Health Health;
+protected:
+	
 };
-

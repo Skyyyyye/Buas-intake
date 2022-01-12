@@ -1,6 +1,5 @@
 #include "player.h"
-#include "SFML/Graphics.hpp"
-#include "Health.h"
+
 
 //create player
 Player::Player() {
@@ -9,11 +8,15 @@ Player::Player() {
         // error...
     }
     playerSP.setTexture(character);
+
 }
 
 //draw player on screen
 void Player::drawPlayer(sf::RenderWindow& window) {
-    window.draw(playerSP);
+    if (health > 50) {
+        window.draw(playerSP);
+    }
+    
 }
 
 //movement
@@ -36,6 +39,6 @@ void Player::move(float dt) {
         playerSP.move(sf::Vector2f((0), -vel));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E)) {
-        health = 0;
+        health = 40;
     }
 }

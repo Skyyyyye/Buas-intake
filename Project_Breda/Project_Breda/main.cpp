@@ -3,6 +3,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include "Player.h"
+#include "Enemy.h"
 
     //initialize variables
 
@@ -13,9 +14,6 @@
     //sprites
     sf::Texture backGroundT;
     sf::Sprite backGround;
-
-    //health variables
-    int PHealth;
 
     void texture() {
         if (!backGroundT.loadFromFile("test.png"))
@@ -33,9 +31,10 @@ int main()
 
     //initiate sprites and textures
     texture();
-    PHealth = 100;
+
 
     Player Player;
+    Enemy Enemy;
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -65,6 +64,8 @@ int main()
 
         //foreground drawing
         Player.drawPlayer(window);
+        Enemy.drawEnemys(window);
+
 
 
         // end the current frame
