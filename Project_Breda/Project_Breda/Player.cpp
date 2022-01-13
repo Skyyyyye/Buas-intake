@@ -1,4 +1,6 @@
 #include "player.h"
+#include "Enemy.h"
+#include <iostream>
 
 
 //create player
@@ -15,8 +17,8 @@ Player::Player() {
 void Player::drawPlayer(sf::RenderWindow& window) {
     if (health > 50) {
         window.draw(playerSP);
+        playerPos = playerSP.getPosition();
     }
-    
 }
 
 //movement

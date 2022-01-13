@@ -163,6 +163,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Health.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SFMLMath.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

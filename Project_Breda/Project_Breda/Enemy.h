@@ -5,8 +5,9 @@ class Enemy :
 {
 public:
     Enemy();
-    void drawEnemys(sf::RenderWindow& window);
-
+    void drawEnemys(sf::RenderWindow& window, float dt, sf::Vector2f playerPos);
+    void Emove(float dt,sf::Vector2f playerPos);
+    
 private:
     sf::Texture enemy;
     sf::Sprite enemySP[11];
