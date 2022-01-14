@@ -1,5 +1,4 @@
 #include "player.h"
-#include "Enemy.h"
 #include <iostream>
 
 
@@ -10,8 +9,9 @@ Player::Player() {
         // error...
     }
     playerSP.setTexture(character);
-
 }
+
+
 
 //draw player on screen
 void Player::drawPlayer(sf::RenderWindow& window) {
@@ -19,7 +19,7 @@ void Player::drawPlayer(sf::RenderWindow& window) {
     playerPos = playerSP.getPosition();
     playerRect = playerSP.getGlobalBounds();
 
-    if (health > 50) {
+    if (Phealth > 50) {
         window.draw(playerSP);
     }
 }
@@ -47,7 +47,10 @@ void Player::move(float dt) {
         death();
     }
 }
+
 void Player::death() {
-    health = 40;
-    std::cout << health;
+    std::cout << Phealth;
+    Phealth = 40;
+    std::cout << Phealth;
 }
+

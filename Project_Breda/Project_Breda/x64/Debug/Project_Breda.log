@@ -1,2 +1,18 @@
-﻿  Player.cpp
-  Project_Breda.vcxproj -> C:\Users\wouter\Documents\breda_project\Project_Breda\x64\Debug\Project_Breda.exe
+﻿  Enemy.cpp
+C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\SFMLMath.hpp(139,25): warning C4244: 'argument': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\Enemy.cpp(27): message : see reference to function template instantiation 'T sf::getNormalized<sf::Vector2<float>>(const T &)' being compiled
+          with
+          [
+              T=sf::Vector2<float>
+          ]
+C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\SFMLMath.hpp(139,19): warning C4244: 'argument': conversion from 'const double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  main.cpp
+  Project_Breda.vcxproj -> C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\x64\Debug\Project_Breda.exe

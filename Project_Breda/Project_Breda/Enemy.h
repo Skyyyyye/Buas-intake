@@ -7,7 +7,7 @@ class Enemy :
 {
 public:
     Enemy();
-    void drawEnemys(sf::RenderWindow& window, float dt, sf::Vector2f playerPos, sf::FloatRect playerRect);
+    void drawEnemys(sf::RenderWindow& window, float dt, sf::Vector2f playerPos, sf::FloatRect playerRect, Player &Player);
     
 private:
     sf::Texture enemy;

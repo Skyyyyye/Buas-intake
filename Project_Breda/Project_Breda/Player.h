@@ -4,7 +4,6 @@
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include "Health.h"
-#include "Enemy.h"
 class Player: 
 	public Health
 {
@@ -19,6 +18,7 @@ private:
 	sf::Texture character;
 	sf::Sprite playerSP;
 	Health Health;
+	int Phealth = 100;
 protected:
 	
 };
