@@ -65,7 +65,7 @@
             //foreground drawing
             Player.drawPlayer(window);
             sf::Vector2f playerPos = Player.playerPos;
-            Enemy.drawEnemys(window, dt, playerPos);
+            Enemy.drawEnemys(window, dt, playerPos, Player.playerRect);
 
 
 

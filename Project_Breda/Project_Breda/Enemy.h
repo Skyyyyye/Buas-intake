@@ -1,12 +1,13 @@
 #pragma once
 #include "Health.h"
+#include "Player.h"
+
 class Enemy :
     public Health
 {
 public:
     Enemy();
-    void drawEnemys(sf::RenderWindow& window, float dt, sf::Vector2f playerPos);
-    void Emove(float dt,sf::Vector2f playerPos);
+    void drawEnemys(sf::RenderWindow& window, float dt, sf::Vector2f playerPos, sf::FloatRect playerRect);
     
 private:
     sf::Texture enemy;

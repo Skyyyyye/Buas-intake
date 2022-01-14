@@ -15,9 +15,12 @@ Player::Player() {
 
 //draw player on screen
 void Player::drawPlayer(sf::RenderWindow& window) {
+    
+    playerPos = playerSP.getPosition();
+    playerRect = playerSP.getGlobalBounds();
+
     if (health > 50) {
         window.draw(playerSP);
-        playerPos = playerSP.getPosition();
     }
 }
 
@@ -41,6 +44,10 @@ void Player::move(float dt) {
         playerSP.move(sf::Vector2f((0), -vel));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E)) {
-        health = 40;
+        death();
     }
+}
+void Player::death() {
+    health = 40;
+    std::cout << health;
 }

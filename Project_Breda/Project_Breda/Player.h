@@ -12,7 +12,9 @@ public:
 	Player();
 	void drawPlayer(sf::RenderWindow& window);
 	void move(float dt);
+	void death();
 	sf::Vector2f playerPos;
+	sf::FloatRect playerRect;
 private: 
 	sf::Texture character;
 	sf::Sprite playerSP;
