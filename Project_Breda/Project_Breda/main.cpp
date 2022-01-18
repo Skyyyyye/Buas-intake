@@ -4,6 +4,7 @@
 #include <SFML/Audio.hpp>
 #include "Player.h"
 #include "Enemy.h"
+#include "Weapon.h"
 
     //initialize variables
 
@@ -35,6 +36,7 @@
 
         Player Player;
         Enemy Enemy;
+        Weapon Weapon;
 
         // run the program as long as the window is open
         while (window.isOpen())
@@ -52,7 +54,7 @@
             dt = dtCLock.restart().asSeconds();
 
             //movement
-            Player.move(dt);
+            Player.move(dt, window,Weapon);
 
             // clear the window with black color
             window.clear(sf::Color::Black);
@@ -65,7 +67,8 @@
             //foreground drawing
             Player.drawPlayer(window);
             sf::Vector2f playerPos = Player.playerPos;
-            Enemy.drawEnemys(window, dt, playerPos, Player.playerRect, Player);
+            Enemy.drawEnemys(window, dt, playerPos, Player.playerRect, Player, Weapon.weaponRect);
+            Weapon.draw(playerPos, window);
 
 
 

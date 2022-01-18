@@ -9,6 +9,7 @@ Player::Player() {
         // error...
     }
     playerSP.setTexture(character);
+    playerSP.move(sf::Vector2f((300.f), 300.f));
 }
 
 
@@ -25,7 +26,7 @@ void Player::drawPlayer(sf::RenderWindow& window) {
 }
 
 //movement
-void Player::move(float dt) {
+void Player::move(float dt,sf::RenderWindow &window,Weapon &Weapon) {
     float vel = 100 * dt;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
     {
@@ -42,15 +43,28 @@ void Player::move(float dt) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
     {
         playerSP.move(sf::Vector2f((0), -vel));
+
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
         death();
     }
+
+    sf::Event event;
+    while (window.pollEvent(event)) 
+    {
+        if (event.type == sf::Event::KeyPressed)
+        {
+            if (event.key.code == sf::Keyboard::E)
+            {
+                Weapon.attack();
+            }
+        }
+    }
+    
+
 }
 
 void Player::death() {
-    std::cout << Phealth;
     Phealth = 40;
-    std::cout << Phealth;
 }
 
