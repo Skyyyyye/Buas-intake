@@ -15,11 +15,11 @@ public:
 	void death();
 	sf::Vector2f playerPos;
 	sf::FloatRect playerRect;
+	int Phealth = 100;
 private: 
 	sf::Texture character;
 	sf::Sprite playerSP;
 	Health Health;
-	int Phealth = 100;
 protected:
-	
+
 };

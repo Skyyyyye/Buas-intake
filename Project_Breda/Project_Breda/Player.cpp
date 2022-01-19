@@ -1,5 +1,4 @@
 #include "player.h"
-#include <iostream>
 
 
 //create player
@@ -20,7 +19,7 @@ void Player::drawPlayer(sf::RenderWindow& window) {
     playerPos = playerSP.getPosition();
     playerRect = playerSP.getGlobalBounds();
 
-    if (Phealth > 50) {
+    if (Phealth > 1) {
         window.draw(playerSP);
     }
 }
@@ -65,6 +64,6 @@ void Player::move(float dt,sf::RenderWindow &window,Weapon &Weapon) {
 }
 
 void Player::death() {
-    Phealth = 40;
+    Phealth = 0;
 }
 

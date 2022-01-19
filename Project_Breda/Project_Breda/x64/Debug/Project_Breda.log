@@ -4,7 +4,7 @@ C:\Users\wouter\Documents\breda_project\Project_Breda\Project_Breda\SFMLMath.hpp
           [
               T=float
           ]
-C:\Users\wouter\Documents\breda_project\Project_Breda\Project_Breda\Enemy.cpp(30): message : see reference to function template instantiation 'T sf::getNormalized<sf::Vector2<float>>(const T &)' being compiled
+C:\Users\wouter\Documents\breda_project\Project_Breda\Project_Breda\Enemy.cpp(32): message : see reference to function template instantiation 'T sf::getNormalized<sf::Vector2<float>>(const T &)' being compiled
           with
           [
               T=sf::Vector2<float>
@@ -14,8 +14,4 @@ C:\Users\wouter\Documents\breda_project\Project_Breda\Project_Breda\SFMLMath.hpp
           [
               T=float
           ]
-  Player.cpp
-  Weapon.cpp
-  Generating Code...
-  main.cpp
   Project_Breda.vcxproj -> C:\Users\wouter\Documents\breda_project\Project_Breda\x64\Debug\Project_Breda.exe

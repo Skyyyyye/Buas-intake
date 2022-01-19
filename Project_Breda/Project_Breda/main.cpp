@@ -28,7 +28,7 @@
     {
 
         // create the window
-        sf::RenderWindow window(sf::VideoMode(900, 700), "My window");
+        sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
 
         //initiate sprites and textures
         texture();
@@ -66,9 +66,8 @@
 
             //foreground drawing
             Player.drawPlayer(window);
-            sf::Vector2f playerPos = Player.playerPos;
-            Enemy.drawEnemys(window, dt, playerPos, Player.playerRect, Player, Weapon.weaponRect);
-            Weapon.draw(playerPos, window);
+            Enemy.drawEnemys(window, dt, Player.playerPos, Player.playerRect, Player, Weapon.weaponRect);
+            Weapon.draw(Player.playerPos, window, dt, Player.Phealth);
 
 
 
