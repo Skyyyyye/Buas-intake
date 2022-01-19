@@ -26,26 +26,62 @@ void Player::drawPlayer(sf::RenderWindow& window) {
 
 //movement
 void Player::move(float dt,sf::RenderWindow &window,Weapon &Weapon) {
-    float vel = 100 * dt;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-    {
-        playerSP.move(sf::Vector2f((vel), 0.f));
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-    {
-        playerSP.move(sf::Vector2f((0), vel));
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-    {
-        playerSP.move(sf::Vector2f((-vel), 0.f));
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
-    {
-        playerSP.move(sf::Vector2f((0), -vel));
+    if (playerPos.x > 400 && playerPos.y > 500) {
+        std::cout << moveSec;
+        moveElapsed = moveClock.getElapsedTime();
+        moveSec = moveElapsed.asSeconds();
+
+        sf::Vector2f velocity;
+        float vel = 100 * dt;
+        if (moveSec < 1) {
+            vel2 = vel * moveSec;
+        }
+        else if (moveSec > 1) {
+            vel2 = vel * 1;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+        {
+            velocity.x++;
+            playerSP.move(sf::Vector2f((vel2), 0.f));
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+        {
+            playerSP.move(sf::Vector2f((0), vel2));
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+        {
+            playerSP.move(sf::Vector2f((-vel2), 0.f));
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+        {
+            playerSP.move(sf::Vector2f((0), -vel2));
+        }
+        if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
+            moveClock.restart();
+        }
 
     }
+    else {
+        float vel = 100 * dt;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+        {
+            playerSP.move(sf::Vector2f((vel), 0.f));
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+        {
+            playerSP.move(sf::Vector2f((0), vel));
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+        {
+            playerSP.move(sf::Vector2f((-vel), 0.f));
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+        {
+            playerSP.move(sf::Vector2f((0), -vel));
+        }
+    }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
-        death();
+        death(100);
     }
 
     sf::Event event;
@@ -59,11 +95,12 @@ void Player::move(float dt,sf::RenderWindow &window,Weapon &Weapon) {
             }
         }
     }
-    
-
+    giveDElapsed = giveDClock.getElapsedTime();
+    giveDSec = giveDElapsed.asSeconds();
 }
 
-void Player::death() {
-    Phealth = 0;
+void Player::death(int dam) {
+    Phealth = Phealth - dam;
+    giveDClock.restart();
 }
 

@@ -12,14 +12,21 @@ public:
 	Player();
 	void drawPlayer(sf::RenderWindow& window);
 	void move(float dt,sf::RenderWindow &window, Weapon &Weapon);
-	void death();
+	void death(int dam);
 	sf::Vector2f playerPos;
 	sf::FloatRect playerRect;
 	int Phealth = 100;
+	float giveDSec;
 private: 
 	sf::Texture character;
 	sf::Sprite playerSP;
 	Health Health;
+	sf::Clock giveDClock;
+	sf::Time giveDElapsed;
+	sf::Clock moveClock;
+	sf::Time moveElapsed;
+	float moveSec;
+	float vel2;
 protected:
 
 };

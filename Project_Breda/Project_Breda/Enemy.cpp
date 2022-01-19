@@ -18,41 +18,53 @@ void Enemy::initialize(int desiredEnemy) {
     }
 }
 
-void Enemy::drawEnemys(sf::RenderWindow& window, float dt, sf::Vector2f playerPos, sf::FloatRect playerRect, Player &Player, sf::FloatRect weaponRect) {
+void Enemy::drawEnemys(sf::RenderWindow& window, float dt, sf::Vector2f playerPos, sf::FloatRect playerRect, Player &Player, sf::FloatRect weaponRect, Weapon &Weapon) {
+
     for (int i = 0; i < (wave * 3); i++) {
-        if (EHealth[i] > 50) {
+
+        takeDElapsed[i] = takeDClock[i].getElapsedTime();
+        takeDSec[i] = takeDElapsed[i].asSeconds();
+
+        int dam = 20;
+        if (EHealth[i] > 1) {
 
             sf::FloatRect EboundingBox = enemySP[i].getGlobalBounds();
-            if (EboundingBox.intersects(playerRect)) {
-                Player.death();
+            if (Player.giveDSec > 0.5) {
+                if (EboundingBox.intersects(playerRect)) {
+                    Player.death(dam);
+                }
             }
-            if (EboundingBox.intersects(weaponRect)) {
-                death(i);
+            if (takeDSec[i] > 0.5) {
+                if (EboundingBox.intersects(weaponRect)) {
+                    death(i, Weapon.Wdam);
+                }
             }
             sf::Vector2f direction = sf::getNormalized(playerPos - enemySP[i].getPosition());
-            enemySP[i].move(sf::Vector2f((5 * dt * direction.x),(5 * dt * direction.y)));
-            window.draw(enemySP[i]);
+            enemySP[i].move(sf::Vector2f((5 * dt * direction.x), (5 * dt * direction.y)));
+            if (EHealth[i] > 1) {
+                window.draw(enemySP[i]);
+            }
         }
     }
-    
-    elapsed = clock.getElapsedTime();
-    sec = elapsed.asSeconds();
-
     if (enemyCount <= 0) {
         nextWave();
     }
+    waveElapsed = waveClock.getElapsedTime();
+    waveSec = waveElapsed.asSeconds();
 }
 
-void Enemy::death(int i) {
-    EHealth[i] = 1;
-    enemyCount--;
-    clock.restart();
- 
+void Enemy::death(int i, int Wdam) {
+   EHealth[i] = EHealth[i] - Wdam;
+   takeDClock[i].restart();
+   if (EHealth[i] < 1) {
+       enemyCount--;
+       waveClock.restart();
+   }
 }
 
 void Enemy::nextWave() {
 
-    if (sec >= 1) {
+    if (waveSec >= 1) {
         wave++;
         int DE = wave * 3;
         initialize(DE);

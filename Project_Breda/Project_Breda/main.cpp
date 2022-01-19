@@ -66,7 +66,7 @@
 
             //foreground drawing
             Player.drawPlayer(window);
-            Enemy.drawEnemys(window, dt, Player.playerPos, Player.playerRect, Player, Weapon.weaponRect);
+            Enemy.drawEnemys(window, dt, Player.playerPos, Player.playerRect, Player, Weapon.weaponRect, Weapon);
             Weapon.draw(Player.playerPos, window, dt, Player.Phealth);
 
 
