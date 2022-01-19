@@ -27,6 +27,8 @@ private:
 	sf::Time moveElapsed;
 	float moveSec;
 	float vel2;
+	float velx = 0;
+	float vely = 0;
 protected:
 
 };

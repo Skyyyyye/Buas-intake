@@ -26,75 +26,111 @@ void Player::drawPlayer(sf::RenderWindow& window) {
 
 //movement
 void Player::move(float dt,sf::RenderWindow &window,Weapon &Weapon) {
-    if (playerPos.x > 400 && playerPos.y > 500) {
-        std::cout << moveSec;
+    if (playerPos.x > 400 && playerPos.y > 400) {
+
+        float speed = 0.4;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+        {
+            velx += speed;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+        {
+            velx -= speed;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+        {
+            vely += speed;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+        {
+            vely -= speed;
+        }
+        float drag = 0.999;
+        velx *= drag;
+        vely *= drag;
+        playerSP.move(sf::Vector2f(velx * dt, vely * dt));
+
+        /*/std::cout << moveSec;
         moveElapsed = moveClock.getElapsedTime();
         moveSec = moveElapsed.asSeconds();
 
         sf::Vector2f velocity;
+        float velx = 0;
+        float vely = 0;
         float vel = 100 * dt;
+        float maxVel = 10;
         if (moveSec < 1) {
             vel2 = vel * moveSec;
         }
         else if (moveSec > 1) {
             vel2 = vel * 1;
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && velx < maxVel)
         {
-            velocity.x++;
-            playerSP.move(sf::Vector2f((vel2), 0.f));
+            velx++;
+        }
+        else if (velx >= 0) {
+            velx--;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
         {
-            playerSP.move(sf::Vector2f((0), vel2));
+            vely++;
+        }
+        else if (vely >= 0) {
+            vely--;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
         {
-            playerSP.move(sf::Vector2f((-vel2), 0.f));
+            velx--;
+        }
+        else if (velx <= 0) {
+            velx++;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
         {
-            playerSP.move(sf::Vector2f((0), -vel2));
+            vely--;
         }
-        if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-            moveClock.restart();
+        else if (velx <= 0) {
+            velx++;
         }
 
+        playerSP.move(sf::Vector2f(velx * dt, vely * dt));*/
     }
     else {
-        float vel = 100 * dt;
+        bool anyKeyPressed = false;
+        float constSpeed = 100;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
         {
-            playerSP.move(sf::Vector2f((vel), 0.f));
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-        {
-            playerSP.move(sf::Vector2f((0), vel));
+            velx = constSpeed;
+            anyKeyPressed = true;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
         {
-            playerSP.move(sf::Vector2f((-vel), 0.f));
+            velx = -constSpeed;
+            anyKeyPressed = true;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+        {
+            vely = constSpeed;
+            anyKeyPressed = true;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
         {
-            playerSP.move(sf::Vector2f((0), -vel));
+            vely = -constSpeed;
+            anyKeyPressed = true;
         }
+        if (!anyKeyPressed) {
+            velx = 0;
+            vely = 0;
+        }
+        sf::Vector2f direction = sf::getNormalized(sf::Vector2f(velx, vely));
+        playerSP.move(sf::Vector2f(direction.x * constSpeed * dt, direction.y * constSpeed * dt));
     }
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
         death(100);
     }
 
-    sf::Event event;
-    while (window.pollEvent(event)) 
-    {
-        if (event.type == sf::Event::KeyPressed)
-        {
-            if (event.key.code == sf::Keyboard::E)
-            {
-                Weapon.attack();
-            }
-        }
-    }
     giveDElapsed = giveDClock.getElapsedTime();
     giveDSec = giveDElapsed.asSeconds();
 }

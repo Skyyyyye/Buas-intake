@@ -16,6 +16,4 @@ private:
     sf::Time elapsed;
     float sec = 0;
     int rank = 1;
-
 };
-

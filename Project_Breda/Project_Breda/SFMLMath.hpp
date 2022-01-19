@@ -133,8 +133,12 @@ namespace sf
     inline T getNormalized( const T& vec )
     {
         const double length = getLength( vec );
+        if (length == 0) {
+            return T(0, 0);
+        }
         const double newX   = vec.x / length;
         const double newY   = vec.y / length;
+        
 
         return T( newX, newY );
     }

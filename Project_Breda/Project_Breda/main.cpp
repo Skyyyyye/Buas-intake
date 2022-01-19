@@ -46,8 +46,16 @@
             while (window.pollEvent(event))
             {
                 // "close requested" event: we close the window
-                if (event.type == sf::Event::Closed)
+                if (event.type == sf::Event::Closed){
                     window.close();
+                }
+                if (event.type == sf::Event::KeyPressed)
+                {
+                    if (event.key.code == sf::Keyboard::E)
+                    {
+                        Weapon.attack();
+                    }
+                }
             }
 
             //DeltaTime
