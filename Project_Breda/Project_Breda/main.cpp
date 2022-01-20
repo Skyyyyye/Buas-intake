@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Weapon.h"
+#include "Trail.h"
+#include "Background.h"
 
     //initialize variables
 
@@ -12,31 +14,18 @@
     sf::Clock dtCLock;
     float dt;
 
-    //sprites
-    sf::Texture backGroundT;
-    sf::Sprite backGround;
-
-    void texture() {
-        if (!backGroundT.loadFromFile("test.png"))
-        {
-                // error...
-        }
-        backGround.setTexture(backGroundT);
-    }
-
     int main()
     {
 
         // create the window
         sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
 
-        //initiate sprites and textures
-        texture();
-
-
+        //create refrences
         Player Player;
         Enemy Enemy;
         Weapon Weapon;
+        Trail Trail;
+        Background Background;
 
         // run the program as long as the window is open
         while (window.isOpen())
@@ -49,6 +38,7 @@
                 if (event.type == sf::Event::Closed){
                     window.close();
                 }
+                //check for attack
                 if (event.type == sf::Event::KeyPressed)
                 {
                     if (event.key.code == sf::Keyboard::E)
@@ -58,24 +48,25 @@
                 }
             }
 
-            //DeltaTime
+            //update DeltaTime
             dt = dtCLock.restart().asSeconds();
 
-            //movement
+            //initate main loops
+            Background.loop();
             Player.move(dt, window,Weapon);
 
             // clear the window with black color
             window.clear(sf::Color::Black);
 
-            // draw everything here...
-            // 
             //background drawing
-            window.draw(backGround);
+            Background.draw(window);
 
             //foreground drawing
             Player.drawPlayer(window);
             Enemy.drawEnemys(window, dt, Player.playerPos, Player.playerRect, Player, Weapon.weaponRect, Weapon);
             Weapon.draw(Player.playerPos, window, dt, Player.Phealth);
+            Trail.loop(Player.playerPos, window);
+
 
 
 

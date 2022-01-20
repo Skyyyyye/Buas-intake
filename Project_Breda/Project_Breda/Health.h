@@ -10,6 +10,6 @@ private:
 
 protected:
 	int health = 100;
-	int EHealth[10];
+	int EHealth[50];
 };
 

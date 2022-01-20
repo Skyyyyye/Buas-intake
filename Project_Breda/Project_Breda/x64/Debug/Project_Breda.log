@@ -1,19 +1,4 @@
-﻿  Player.cpp
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\Player.cpp(31,26): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\Player.cpp(48,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\SFMLMath.hpp(143,25): warning C4244: 'argument': conversion from 'const double' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\Player.cpp(126): message : see reference to function template instantiation 'T sf::getNormalized<sf::Vector2f>(const T &)' being compiled
-          with
-          [
-              T=sf::Vector2f
-          ]
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\SFMLMath.hpp(143,19): warning C4244: 'argument': conversion from 'const double' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-  Project_Breda.vcxproj -> C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\x64\Debug\Project_Breda.exe
+﻿  Trail.cpp
+C:\Users\wouter\Documents\breda_project\Project_Breda\Project_Breda\Trail.cpp(18,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+  Project_Breda.vcxproj -> C:\Users\wouter\Documents\breda_project\Project_Breda\x64\Debug\Project_Breda.exe

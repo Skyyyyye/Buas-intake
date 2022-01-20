@@ -49,78 +49,35 @@ void Player::move(float dt,sf::RenderWindow &window,Weapon &Weapon) {
         velx *= drag;
         vely *= drag;
         playerSP.move(sf::Vector2f(velx * dt, vely * dt));
-
-        /*/std::cout << moveSec;
-        moveElapsed = moveClock.getElapsedTime();
-        moveSec = moveElapsed.asSeconds();
-
-        sf::Vector2f velocity;
-        float velx = 0;
-        float vely = 0;
-        float vel = 100 * dt;
-        float maxVel = 10;
-        if (moveSec < 1) {
-            vel2 = vel * moveSec;
-        }
-        else if (moveSec > 1) {
-            vel2 = vel * 1;
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && velx < maxVel)
-        {
-            velx++;
-        }
-        else if (velx >= 0) {
-            velx--;
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-        {
-            vely++;
-        }
-        else if (vely >= 0) {
-            vely--;
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-        {
-            velx--;
-        }
-        else if (velx <= 0) {
-            velx++;
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
-        {
-            vely--;
-        }
-        else if (velx <= 0) {
-            velx++;
-        }
-
-        playerSP.move(sf::Vector2f(velx * dt, vely * dt));*/
     }
     else {
-        bool anyKeyPressed = false;
+        bool xKeyPressed = false;
+        bool yKeyPressed = false;
         float constSpeed = 100;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
         {
             velx = constSpeed;
-            anyKeyPressed = true;
+            xKeyPressed = true;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
         {
             velx = -constSpeed;
-            anyKeyPressed = true;
+            xKeyPressed = true;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
         {
             vely = constSpeed;
-            anyKeyPressed = true;
+            yKeyPressed = true;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
         {
             vely = -constSpeed;
-            anyKeyPressed = true;
+            yKeyPressed = true;
         }
-        if (!anyKeyPressed) {
+        if (!xKeyPressed) {
             velx = 0;
+        }
+        if (!yKeyPressed) {
             vely = 0;
         }
         sf::Vector2f direction = sf::getNormalized(sf::Vector2f(velx, vely));
