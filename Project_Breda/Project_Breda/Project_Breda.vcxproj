@@ -158,11 +158,6 @@
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="player.png" />
-    <Image Include="test.png" />
-    <Image Include="trail.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
@@ -171,6 +166,18 @@
     <ClInclude Include="SFMLMath.hpp" />
     <ClInclude Include="Trail.h" />
     <ClInclude Include="Weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="background.png" />
+    <Image Include="downidle.png" />
+    <Image Include="downwalk.png" />
+    <Image Include="ice.png" />
+    <Image Include="leftwalk.png" />
+    <Image Include="pickup.png" />
+    <Image Include="player.png" />
+    <Image Include="rightwalk.png" />
+    <Image Include="trail.png" />
+    <Image Include="upwalk.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,6 @@
 #include "Enemy.h"
 
-//upon initaite, load textures and sprites
+//upon initiate, load textures and sprites
 Enemy::Enemy() {
     if (!enemy.loadFromFile("player.png"))
     {
@@ -32,7 +32,7 @@ void Enemy::loop(float dt, sf::Vector2f playerPos, sf::FloatRect playerRect, Pla
             if (Player.giveDSec > 0.5) {
                 if (EboundingBox.intersects(playerRect)) {
 
-                    Player.death(damage);
+                    Player.takeDamage(damage);
                 }
             }
             if (takeDSec[i] > 0.5) {
