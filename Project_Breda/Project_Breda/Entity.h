@@ -6,6 +6,8 @@
 #include "SFMLMath.hpp"
 #include <iostream>
 
+#define test std::cout << "test"
+
 class Entity
 {
 public:

@@ -28,6 +28,7 @@ void Trail::loop(sf::Vector2f playerPos) {
             b++;
             appear(playerPos, b);
             prevPos = playerPos;
+            
         }
         //if the amount of trails is over the array limit start by sprite 1 again
         else {
@@ -63,7 +64,7 @@ void Trail::appear(sf::Vector2f playerPos, int i) {
     trailClock[i].restart();
 
     //set the position to stay
-    trailSP[i].setPosition(playerPos);
+    trailSP[i].setPosition(sf::Vector2f(playerPos.x - 5, playerPos.y +17));
 }
 
 //draw function

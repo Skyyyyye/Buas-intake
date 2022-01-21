@@ -2,6 +2,8 @@
 
 //upon initaite, load textures and sprites
 Background::Background() {
+
+    //load textures
     if (!backgroundTex.loadFromFile("background.png"))
     {
         std::cout << "background texture load failed";
@@ -14,14 +16,14 @@ Background::Background() {
     }
     iceSP.setTexture(iceTex);
 
-    backgroundTex.setRepeated(true);
-    backgroundSP.setTextureRect(sf::IntRect(0, 0, 800, 600));
+    //set background properties
+    backgroundSP.setTexture(backgroundTex);
+    backgroundSP.setScale(sf::Vector2f(2, 2));
+    backgroundSP.setPosition(sf::Vector2f(0, 0));
 
-    iceTex.setRepeated(true);
+    //set ice properties
     iceSP.setTextureRect(sf::IntRect(0, 0, 450, 300));
     iceSP.setScale(sf::Vector2f(2, 2));
-
-    //set background position 
     iceSP.setPosition(sf::Vector2f(350, 300));
 }
 
@@ -35,6 +37,5 @@ void Background::loop() {
 //draw function
 void Background::draw(sf::RenderWindow& window) {
 
-    window.draw(backgroundSP);
     window.draw(iceSP);
 }

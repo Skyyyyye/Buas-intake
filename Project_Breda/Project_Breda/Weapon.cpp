@@ -2,7 +2,7 @@
 
 //upon initiate, load textures and sprites
 Weapon::Weapon() {
-	if (weaponT.loadFromFile("player.png"))
+	if (weaponT.loadFromFile("weapon.png"))
 	{
 		// error...
 	}
@@ -39,7 +39,7 @@ void Weapon::loop(sf::Vector2f playerPos, sf::RenderWindow& window, float dt, in
 
 			//set position relative to the player
 			weaponSP.setPosition(playerPos);
-			weaponSP.move(sf::Vector2f((20 * direction.x), (20 * direction.y)));
+			weaponSP.move(sf::Vector2f((40 * direction.x), (40 * direction.y)));
 		}
 		//otherwise set position outside window
 		else {

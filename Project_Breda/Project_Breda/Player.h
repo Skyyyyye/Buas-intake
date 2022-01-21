@@ -7,8 +7,10 @@ class Player:
 public:
 	//functions
 	Player();
+	void start();
 	void draw(sf::RenderWindow& window);
 	void loop(float dt,sf::RenderWindow &window, Weapon &Weapon, sf::FloatRect iceRect);
+	void attack(sf::Event& event, Weapon &Weapon);
 	void takeDamage(int dam);
 	void animate();
 
@@ -20,7 +22,12 @@ public:
 	int Phealth = 100;
 
 	//communicate damage immunity frames
-	float giveDSec;
+	float takeDSec;
+	bool isTakingDamage = false;
+	bool ableToTakeDam = false;
+
+	//attack state
+	bool isAttacking = false;
 
 private: 
 	//initiate player 
@@ -33,10 +40,17 @@ private:
 	sf::Texture downWalk;
 	sf::Texture downIdle;
 
+	sf::Texture downattack;
+	sf::Texture upattack;
+	sf::Texture leftattack;
+	sf::Texture rightattack;
+
+	sf::Texture pickUp;
+
 
 	//initiate immunity frame clocks
-	sf::Clock giveDClock;
-	sf::Time giveDElapsed;
+	sf::Clock takeDClock;
+	sf::Time takeDElapsed;
 
 	//movement variables
 	float velx = 0;
@@ -46,6 +60,8 @@ private:
 	sf::Clock animationClock;
 	sf::Time animationElapsed;
 	float animationSec;
+
+
 
 protected:
 

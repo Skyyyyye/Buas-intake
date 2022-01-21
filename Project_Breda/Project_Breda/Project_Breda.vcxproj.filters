@@ -39,6 +39,9 @@
     <ClCompile Include="Background.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Background.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -97,5 +103,31 @@
     <Image Include="rightwalk.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="downattack.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="upattack.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="leftattack.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="rightattack.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="enemy.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="hearts.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="buttons.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="m5x7.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
 </Project>

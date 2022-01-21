@@ -9,6 +9,7 @@
 #include "Weapon.h"
 #include "Trail.h"
 #include "Background.h"
+#include "UI.h"
 
 /*
 * 
@@ -24,6 +25,7 @@ https://rmw-restaff.itch.io/restaff-december-2021
 https://vectorpixelstar.itch.io/textures
 https://fliflifly.itch.io/hearts-and-health-bar
 https://stealthix.itch.io/rpg-nature-tileset
+https://pixellad.itch.io/colorful-text-game-ui-kit
 
 */
 
@@ -45,6 +47,7 @@ https://stealthix.itch.io/rpg-nature-tileset
         Weapon Weapon;
         Trail Trail;
         Background Background;
+        UI UI;
 
         // run the program as long as the window is open
         while (window.isOpen())
@@ -57,13 +60,13 @@ https://stealthix.itch.io/rpg-nature-tileset
                 if (event.type == sf::Event::Closed){
                     window.close();
                 }
+
                 //check for attack
-                if (event.type == sf::Event::KeyPressed)
-                {
-                    if (event.key.code == sf::Keyboard::E)
-                    {
-                        Weapon.attack();
-                    }
+                Player.attack(event, Weapon);
+
+                //check for restart button
+                if (Player.Phealth <= 0) {
+                    UI.checkButtonNeeded(Player.Phealth, event);
                 }
             }
 
@@ -71,22 +74,37 @@ https://stealthix.itch.io/rpg-nature-tileset
             dt = dtCLock.restart().asSeconds();
 
             //initate main loops
-            Player.loop(dt, window, Weapon, Background.iceRect);
             Background.loop();
+            Player.loop(dt, window, Weapon, Background.iceRect);
             Enemy.loop(dt, Player.playerPos, Player.playerRect, Player, Weapon.weaponRect, Weapon);
             Weapon.loop(Player.playerPos, window, dt, Player.Phealth);
             Trail.loop(Player.playerPos);
+            UI.loop(Player.Phealth, window);
 
             // clear the window with black color
             window.clear(sf::Color::Black);
 
+
+            //draw the background in the main function due to some weird bug i cant seem to find the solution or cause to in any way. this fixes it but still
+            window.draw(Background.backgroundSP);
+
             //background drawing
             Background.draw(window);
+            Trail.draw(window);
 
             //foreground drawing
             Enemy.draw(window);
             Player.draw(window);
             Weapon.draw(window);
+            UI.draw(window);
+
+            //restart the game if triggered
+            if (UI.restart) {
+
+                Player.start();
+                Enemy.start();
+                UI.restart = false;
+            }
 
             // end the current frame
             window.display();

@@ -10,6 +10,7 @@ public:
 
     //functions
     Enemy();
+    void start();
     void loop(float dt, sf::Vector2f playerPos, sf::FloatRect playerRect, Player &Player, sf::FloatRect weaponRect, Weapon &Weapon);
     void takeDamage(int i, int Wdam);
     void initialize(int desiredEnemy);
@@ -17,6 +18,7 @@ public:
     void draw(sf::RenderWindow &window);
 
 private:
+
     //enemy sprite variables
     sf::Texture enemy;
     sf::Sprite enemySP[50];
@@ -32,6 +34,18 @@ private:
     sf::Clock takeDClock[50];
     sf::Time takeDElapsed[50];
     float takeDSec[50];
-    int damage = 20;
+    int damage = 12.5;
+
+    //for seeing is able to give damage
+    sf::Clock giveDamClock;
+    sf::Time giveDamElapsed;
+    float giveDamSec;
+    bool firstGive = true;
+
+    //for random number gen
+    bool firstRandom = true;
+
+protected:
+
 };
 

@@ -155,6 +155,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\wouter\Downloads\SFML-2.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="Trail.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,19 +166,30 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="SFMLMath.hpp" />
     <ClInclude Include="Trail.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="background.png" />
+    <Image Include="buttons.png" />
+    <Image Include="downattack.png" />
     <Image Include="downidle.png" />
     <Image Include="downwalk.png" />
+    <Image Include="enemy.png" />
+    <Image Include="hearts.png" />
     <Image Include="ice.png" />
+    <Image Include="leftattack.png" />
     <Image Include="leftwalk.png" />
     <Image Include="pickup.png" />
     <Image Include="player.png" />
+    <Image Include="rightattack.png" />
     <Image Include="rightwalk.png" />
     <Image Include="trail.png" />
+    <Image Include="upattack.png" />
     <Image Include="upwalk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="m5x7.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
