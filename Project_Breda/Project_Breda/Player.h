@@ -13,6 +13,7 @@ public:
 	void attack(sf::Event& event, Weapon &Weapon);
 	void takeDamage(int dam);
 	void animate();
+	void intro();
 
 	//communicate positions
 	sf::Vector2f playerPos;

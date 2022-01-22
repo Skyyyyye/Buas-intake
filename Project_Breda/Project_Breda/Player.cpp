@@ -5,43 +5,43 @@
 
 //upon initiate, load textures and sprites
 Player::Player() {
-    if (!downWalk.loadFromFile("downwalk.png"))
+    if (!downWalk.loadFromFile("recources/downwalk.png"))
     {
         std::cout << "downwalk load failed";
     }
-    if (!upWalk.loadFromFile("upwalk.png"))
+    if (!upWalk.loadFromFile("recources/upwalk.png"))
     {
         std::cout << "upwak load failed";
     }
-    if (!leftWalk.loadFromFile("leftwalk.png"))
+    if (!leftWalk.loadFromFile("recources/leftwalk.png"))
     {
         std::cout << "leftwalk load failed";
     }
-    if (!rightWalk.loadFromFile("rightwalk.png"))
+    if (!rightWalk.loadFromFile("recources/rightwalk.png"))
     {
         std::cout << "rightwalk load failed";
     }
-    if (!downIdle.loadFromFile("downidle.png"))
+    if (!downIdle.loadFromFile("recources/downidle.png"))
     {
         std::cout << "idle load failed";
     }
-    if (!rightattack.loadFromFile("rightattack.png"))
+    if (!rightattack.loadFromFile("recources/rightattack.png"))
     {
         std::cout << "right attack load failed";
     }
-    if (!leftattack.loadFromFile("leftattack.png"))
+    if (!leftattack.loadFromFile("recources/leftattack.png"))
     {
         std::cout << "left attack load failed";
     }
-    if (!downattack.loadFromFile("downattack.png"))
+    if (!downattack.loadFromFile("recources/downattack.png"))
     {
         std::cout << "downattack load failed";
     }
-    if (!upattack.loadFromFile("upattack.png"))
+    if (!upattack.loadFromFile("recources/upattack.png"))
     {
         std::cout << "upattack load failed";
     }
-    if (!pickUp.loadFromFile("pickup.png"))
+    if (!pickUp.loadFromFile("recources/pickup.png"))
     {
          std::cout << " pickup load failed";
     }
@@ -52,7 +52,7 @@ void Player::start() {
     
     playerSP.setOrigin(27, 27);
     playerSP.setTexture(downIdle);
-    playerSP.setPosition(sf::Vector2f((327.f), 327.f));
+    playerSP.setPosition(sf::Vector2f(570, 208));
     playerSP.setScale(sf::Vector2f(1.5, 1.5));
     Phealth = 100;
 }
@@ -292,6 +292,20 @@ void Player::attack(sf::Event &event, Weapon &Weapon) {
             animationClock.restart();
         }
     }
+    if (event.type == sf::Event::MouseButtonPressed)
+    {
+        //if clicked
+        if (event.mouseButton.button == sf::Mouse::Left) {
+
+            //make weapon appear
+            Weapon.attack();
+
+            //initiate attack animation
+            isAttacking = true;
+            playerSP.setTexture(downattack);
+            animationClock.restart();
+        }
+    }
 }
 
 //damage function
@@ -301,7 +315,6 @@ void Player::takeDamage(int dam) {
         takeDClock.restart();
         Phealth = Phealth - dam;
         isTakingDamage = true;
-        std::cout << Phealth;
     }
 }
 
@@ -374,4 +387,15 @@ void Player::animate() {
 
             animationClock.restart();
     }
+}
+
+//code that has to be executed at the intro
+void Player::intro() {
+
+    //animation clock timers
+    animationElapsed = animationClock.getElapsedTime();
+    animationSec = animationElapsed.asSeconds();
+
+    //animate idle animation
+    playerSP.setTexture(downIdle);
 }

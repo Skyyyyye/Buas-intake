@@ -17,23 +17,25 @@ public:
     void nextWave();
     void draw(sf::RenderWindow &window);
 
+    //communicate wave to the UI
+    int wave = 0;
+
 private:
 
     //enemy sprite variables
     sf::Texture enemy;
-    sf::Sprite enemySP[50];
+    sf::Sprite enemySP[200];
     
     //wave timers and counters
     sf::Clock waveClock;
     sf::Time waveElapsed;
     float waveSec = 0;
     int enemyCount = 0;
-    int wave = 0;
 
     //immunity frame timers and damage amount to player
-    sf::Clock takeDClock[50];
-    sf::Time takeDElapsed[50];
-    float takeDSec[50];
+    sf::Clock takeDClock[200];
+    sf::Time takeDElapsed[200];
+    float takeDSec[200];
     int damage = 12.5;
 
     //for seeing is able to give damage

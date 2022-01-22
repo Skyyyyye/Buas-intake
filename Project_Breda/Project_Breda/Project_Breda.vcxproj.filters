@@ -42,6 +42,9 @@
     <ClCompile Include="UI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Intro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -71,62 +74,83 @@
     <ClInclude Include="UI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Intro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="background.png">
+    <Image Include="recources\background.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="ice.png">
+    <Image Include="recources\bed.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="player.png">
+    <Image Include="recources\black.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="trail.png">
+    <Image Include="recources\blackcomplete.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="downidle.png">
+    <Image Include="recources\buttons.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="downwalk.png">
+    <Image Include="recources\downattack.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="pickup.png">
+    <Image Include="recources\downidle.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="upwalk.png">
+    <Image Include="recources\downwalk.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="leftwalk.png">
+    <Image Include="recources\enemy.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="rightwalk.png">
+    <Image Include="recources\fire.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="downattack.png">
+    <Image Include="recources\hearts.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="upattack.png">
+    <Image Include="recources\ice.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="leftattack.png">
+    <Image Include="recources\leftattack.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="rightattack.png">
+    <Image Include="recources\leftwalk.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="enemy.png">
+    <Image Include="recources\pickup.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="hearts.png">
+    <Image Include="recources\player.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="buttons.png">
+    <Image Include="recources\rightattack.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="recources\rightwalk.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="recources\trail.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="recources\upattack.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="recources\upwalk.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="recources\weapon.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="m5x7.ttf">
+    <Font Include="recources\m5x7.ttf">
       <Filter>Resource Files</Filter>
     </Font>
   </ItemGroup>

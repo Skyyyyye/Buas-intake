@@ -2,7 +2,7 @@
 
 //initiate trails
 Trail::Trail() {
-    if (!trailTex.loadFromFile("trail.png"))
+    if (!trailTex.loadFromFile("recources/trail.png"))
     {
         // error...
     }

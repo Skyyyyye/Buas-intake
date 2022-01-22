@@ -4,13 +4,13 @@
 Background::Background() {
 
     //load textures
-    if (!backgroundTex.loadFromFile("background.png"))
+    if (!backgroundTex.loadFromFile("recources/background.png"))
     {
         std::cout << "background texture load failed";
     }
     backgroundSP.setTexture(backgroundTex);
 
-    if (!iceTex.loadFromFile("ice.png"))
+    if (!iceTex.loadFromFile("recources/ice.png"))
     {
         std::cout << "ice texture load failed";
     }

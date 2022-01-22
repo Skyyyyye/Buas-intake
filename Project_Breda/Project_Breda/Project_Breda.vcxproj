@@ -141,7 +141,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\wouter\Downloads\SFML-2.5.1\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -149,6 +149,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Health.cpp" />
+    <ClCompile Include="Intro.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\wouter\Downloads\SFML-2.5.1\include</AdditionalIncludeDirectories>
@@ -163,33 +164,40 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Health.h" />
+    <ClInclude Include="Intro.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SFMLMath.hpp" />
     <ClInclude Include="Trail.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="background.png" />
-    <Image Include="buttons.png" />
-    <Image Include="downattack.png" />
-    <Image Include="downidle.png" />
-    <Image Include="downwalk.png" />
-    <Image Include="enemy.png" />
-    <Image Include="hearts.png" />
-    <Image Include="ice.png" />
-    <Image Include="leftattack.png" />
-    <Image Include="leftwalk.png" />
-    <Image Include="pickup.png" />
-    <Image Include="player.png" />
-    <Image Include="rightattack.png" />
-    <Image Include="rightwalk.png" />
-    <Image Include="trail.png" />
-    <Image Include="upattack.png" />
-    <Image Include="upwalk.png" />
+    <Image Include="recources\background.png" />
+    <Image Include="recources\bed.png" />
+    <Image Include="recources\black.png" />
+    <Image Include="recources\blackcomplete.png" />
+    <Image Include="recources\buttons.png" />
+    <Image Include="recources\downattack.png" />
+    <Image Include="recources\downidle.png" />
+    <Image Include="recources\downwalk.png" />
+    <Image Include="recources\enemy.png" />
+    <Image Include="recources\fire.png" />
+    <Image Include="recources\hearts.png" />
+    <Image Include="recources\ice.png" />
+    <Image Include="recources\leftattack.png" />
+    <Image Include="recources\leftwalk.png" />
+    <Image Include="recources\pickup.png" />
+    <Image Include="recources\player.png" />
+    <Image Include="recources\rightattack.png" />
+    <Image Include="recources\rightwalk.png" />
+    <Image Include="recources\trail.png" />
+    <Image Include="recources\upattack.png" />
+    <Image Include="recources\upwalk.png" />
+    <Image Include="recources\weapon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="m5x7.ttf" />
+    <Font Include="recources\m5x7.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,7 +2,7 @@
 
 //upon initiate, load textures and sprites
 Weapon::Weapon() {
-	if (weaponT.loadFromFile("weapon.png"))
+	if (weaponT.loadFromFile("recources/weapon.png"))
 	{
 		// error...
 	}

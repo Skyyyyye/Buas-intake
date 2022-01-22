@@ -4,7 +4,7 @@
 Enemy::Enemy() {
 
     //load textures
-    if (!enemy.loadFromFile("enemy.png"))
+    if (!enemy.loadFromFile("recources/enemy.png"))
     {
         std::cout << "enemy texture load failed";
     }
@@ -18,9 +18,10 @@ void Enemy::start() {
 
     //reset the wave
     wave = 0;
-    float waveSec = 0;
-    int enemyCount = 0;
-    int wave = 0;
+    waveSec = 0;
+    enemyCount = 0;
+    wave = 0;
+    waveClock.restart();
     nextWave();
 }
 

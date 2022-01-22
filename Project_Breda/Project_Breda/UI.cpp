@@ -2,15 +2,15 @@
 
 //upon initiate load textures
 UI::UI() {
-    if (!healthTex.loadFromFile("hearts.png"))
+    if (!healthTex.loadFromFile("recources/hearts.png"))
     {
         std::cout << "hearts texture load failed";
     }
-    if (!restartButtonTex.loadFromFile("buttons.png"))
+    if (!restartButtonTex.loadFromFile("recources/buttons.png"))
     {
         std::cout << "button texture load failed";
     }
-    if (!mainFont.loadFromFile("m5x7.ttf"))
+    if (!mainFont.loadFromFile("recources/m5x7.ttf"))
     {
         std::cout << "font load failed";
     }
@@ -30,11 +30,15 @@ UI::UI() {
     restartText.setCharacterSize(50);
     restartText.setFillColor(sf::Color::Black);
 
-
+    waveText.setFont(mainFont);
+    waveText.setCharacterSize(50);
+    waveText.setString("wave");
+    waveText.setFillColor(waveColor);
+    waveText.setPosition(sf::Vector2f(600, 537));
 }
 
 //main loop function
-void UI::loop(int health, sf::RenderWindow &window) {
+void UI::loop(int health, sf::RenderWindow &window, int wave) {
 
     //check health to see what heart to switch to
     if (health == 100) {
@@ -82,6 +86,11 @@ void UI::loop(int health, sf::RenderWindow &window) {
         restartButtonSP.setPosition(sf::Vector2f(-100.f, -100.f));
         restartText.setPosition(sf::Vector2f(-100.f, -100.f));
     }
+
+    //wave text update
+    std::string waveCount = std::to_string(wave);
+    waveText.setString("wave " + waveCount);
+
 }
 
 //check if the button is being pressed
@@ -107,6 +116,6 @@ void UI::draw(sf::RenderWindow &window) {
         window.draw(restartButtonSP);
         window.draw(restartText);
     }
-
+    window.draw(waveText);
     window.draw(healthSP);
 }
