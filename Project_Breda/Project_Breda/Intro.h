@@ -39,6 +39,9 @@ private:
     sf::Time animationElapsed;
     float animationSec;
 
+    //timers
+    sf::Clock timerClock;
+
 protected:
 
 };

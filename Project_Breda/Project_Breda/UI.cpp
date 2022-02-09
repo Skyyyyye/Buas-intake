@@ -10,6 +10,10 @@ UI::UI() {
     {
         std::cout << "button texture load failed";
     }
+    if (!snowTex.loadFromFile("recources/snoww.png"))
+    {
+        std::cout << "snow load failed";
+    }
     if (!mainFont.loadFromFile("recources/m5x7.ttf"))
     {
         std::cout << "font load failed";
@@ -26,7 +30,7 @@ UI::UI() {
 
     //text properties
     restartText.setFont(mainFont);
-    restartText.setString("want to restart?");
+    restartText.setString("Want to restart?");
     restartText.setCharacterSize(50);
     restartText.setFillColor(sf::Color::Black);
 
@@ -35,25 +39,44 @@ UI::UI() {
     waveText.setString("wave");
     waveText.setFillColor(waveColor);
     waveText.setPosition(sf::Vector2f(600, 537));
+
+    restartText2.setFont(mainFont);
+    restartText2.setString("Restart");
+    restartText2.setCharacterSize(50);
+    restartText2.setFillColor(sf::Color::Black);
+
+    nextWaveText.setFont(mainFont);
+    nextWaveText.setCharacterSize(100);
+    nextWaveText.setFillColor(sf::Color::Black);
+
+    //snow properties
+    for (int i = 0; i < 2; i++) {
+        snowSP[i].setTexture(snowTex);
+        snowSP[i].setScale((float)1.2, (float)1.2);
+        left[i] = false;
+        right[i] = false;
+    }
+    sf::Vector2f snow0 = sf::Vector2f(snowSP[0].getPosition().x, snowSP[0].getPosition().y - 720);
+    snowSP[1].setPosition(sf::Vector2f(snow0));
 }
 
 //main loop function
-void UI::loop(int health, sf::RenderWindow &window, int wave) {
+void UI::loop(float health, sf::RenderWindow &window, int wave, float dt, float waveSec) {
 
     //check health to see what heart to switch to
     if (health == 100) {
         healthSP.setTextureRect(sf::IntRect(0, 0, 17, 17));
     }
-    if (health > 75 && health != 100) {
+    if (health >= 75 && health != 100) {
         healthSP.setTextureRect(sf::IntRect(17, 0, 17, 17));
     }
-    if (health > 50 && health < 75) {
+    if (health >= 50 && health <= 75) {
         healthSP.setTextureRect(sf::IntRect(34, 0, 17, 17));
     }
-    if (health > 25 && health < 50) {
+    if (health >= 25 && health <= 50) {
         healthSP.setTextureRect(sf::IntRect(50, 0, 17, 17));
     }
-    if (health < 25) {
+    if (health <= 25) {
         healthSP.setTextureRect(sf::IntRect(68, 0, 17, 17));
     }
 
@@ -68,6 +91,7 @@ void UI::loop(int health, sf::RenderWindow &window, int wave) {
         restartButtonSP.setPosition(sf::Vector2f(280, 300));
 
         restartText.setPosition(sf::Vector2f(restartButtonSP.getPosition().x - 30, restartButtonSP.getPosition().y - 80));
+        restartText2.setPosition(sf::Vector2f(restartButtonSP.getPosition().x + 46, restartButtonSP.getPosition().y - 10));
 
         //check if the button is being hovered 
         if (restartButtonSP.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(window)))) {
@@ -85,16 +109,56 @@ void UI::loop(int health, sf::RenderWindow &window, int wave) {
 
         restartButtonSP.setPosition(sf::Vector2f(-100.f, -100.f));
         restartText.setPosition(sf::Vector2f(-100.f, -100.f));
+        restartText2.setPosition(sf::Vector2f(-100.f, -100.f));
     }
 
     //wave text update
     std::string waveCount = std::to_string(wave);
     waveText.setString("wave " + waveCount);
 
+    //animate
+    animationTime = animationClock.getElapsedTime();
+    animationSec = animationTime.asSeconds();
+
+    for (int i = 0; i < 2; i++) {
+        if (animationSec < 0.5 && !right[i]) {
+            right[i] = true;
+            left[i] = false;
+            snowSP[i].move(sf::Vector2f(5, 0));
+        }
+        if (animationSec > 0.5 && !left[i]) {
+            left[i] = true;
+            right[i] = false;
+            snowSP[i].move(sf::Vector2f(-5, 0));
+        }
+    }
+    if (animationSec > 1) {
+
+        animationClock.restart();
+    }
+    for (int i = 0; i < 2; i++) {
+        snowSP[i].move(sf::Vector2f(0, 30 * dt));
+        if (snowSP[i].getPosition().y > 600) {
+            snowSP[i].setPosition(0, -700);
+        }
+    }
+
+    //update the wave indicator after a new wave is summoned
+    if (waveSec < 2) {
+        waveSecSmall = true;
+        std::string waveCountPlus1 = std::to_string(wave + 1);
+        nextWaveText.setString("wave " + waveCountPlus1);
+        nextWaveText.setPosition(sf::Vector2f(290, 200));
+    }
+    else {
+        waveSecSmall = false;
+        nextWaveText.setPosition(sf::Vector2f(-100, -100));
+    }
+
 }
 
 //check if the button is being pressed
-void UI::checkButtonNeeded(int health, sf::Event &event) {
+void UI::checkButtonNeeded(sf::Event &event) {
 
     if (hovering) {
 
@@ -113,8 +177,18 @@ void UI::checkButtonNeeded(int health, sf::Event &event) {
 void UI::draw(sf::RenderWindow &window) {
 
     if (buttonNeeded) {
+        for (int i = 0; i < 2; i++) {
+            window.draw(snowSP[i]);
+        }
         window.draw(restartButtonSP);
         window.draw(restartText);
+        window.draw(restartText2);
+    }
+    for (int i = 0; i < 2; i++) {
+        window.draw(snowSP[i]);
+    }
+    if (waveSecSmall) {
+            window.draw(nextWaveText);
     }
     window.draw(waveText);
     window.draw(healthSP);

@@ -148,6 +148,9 @@
     <Image Include="recources\weapon.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="recources\snoww.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="recources\m5x7.ttf">

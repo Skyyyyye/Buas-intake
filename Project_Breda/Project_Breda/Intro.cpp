@@ -35,7 +35,7 @@ Intro::Intro() {
 
 	//set fire properties
 	fireSP.setPosition(sf::Vector2f(636, 204));
-	fireSP.setScale(1.8, 1.8);
+	fireSP.setScale((float)1.8, (float)1.8);
 	fireSP.setTextureRect(sf::IntRect(0,0,13,14));
 
 	//black properties
@@ -48,7 +48,7 @@ Intro::Intro() {
 
 	//text properties
 	introText.setFont(introFont);
-	introText.setString("A traveler, discovering new lands.\nOn their heroic journey they have overcome many threats.\nWhen he wakes up from his slumber.\nA new threat arises\nOne that none have ever seen\n\nPress SPACE or ENTER to continue");
+	introText.setString("A traveler, discovering new lands.\nOn their heroic journey they have overcome many threats.\nWhen he wakes up from his slumber.\nA new threat arises\nOne that none have ever seen\n\nTHE RISING SNOWMEN HAVE ARRIVED\n\nPress SPACE or ENTER to continue");
 	introText.setCharacterSize(35);
 	introText.setFillColor(sf::Color::White);
 	introText.setPosition(sf::Vector2f(50,300));
@@ -81,8 +81,11 @@ void Intro::loop() {
 	}
 
 	//for skipping the intro
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)) {
-		stillIntro = false;
+	float timerSec = timerClock.getElapsedTime().asSeconds();
+	if (timerSec > 2) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)) {
+			stillIntro = false;
+		}
 	}
 }
 

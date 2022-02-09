@@ -139,8 +139,7 @@ namespace sf
         const double newX   = vec.x / length;
         const double newY   = vec.y / length;
         
-
-        return T( newX, newY );
+        return T( (float)newX, (float)newY );
     }
 
     /*

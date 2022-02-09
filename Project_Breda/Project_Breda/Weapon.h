@@ -8,7 +8,7 @@ public:
     //functions
     Weapon();
     void attack();
-    void loop(sf::Vector2f playerPos, sf::RenderWindow& window, float dt, int Phealth);
+    void loop(sf::Vector2f playerPos, sf::RenderWindow& window, float dt, float Phealth);
     void draw(sf::RenderWindow& window);
 
     //communicate weapon position

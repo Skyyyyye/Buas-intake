@@ -7,6 +7,7 @@ Weapon::Weapon() {
 		// error...
 	}
 	weaponSP.setTexture(weaponT);
+	weaponSP.setScale((float)1.4, (float)1.4);
 }
 
 //initiate attack function
@@ -16,7 +17,7 @@ void Weapon::attack()
 }
 
 //main loop function
-void Weapon::loop(sf::Vector2f playerPos, sf::RenderWindow& window, float dt, int Phealth) {
+void Weapon::loop(sf::Vector2f playerPos, sf::RenderWindow& window, float dt, float Phealth) {
 
 	//set damage amount
 	Wdam = rank * 20;
@@ -39,7 +40,7 @@ void Weapon::loop(sf::Vector2f playerPos, sf::RenderWindow& window, float dt, in
 
 			//set position relative to the player
 			weaponSP.setPosition(playerPos);
-			weaponSP.move(sf::Vector2f((40 * direction.x), (40 * direction.y)));
+			weaponSP.move(sf::Vector2f(((40 * direction.x) - 14), ((40 * direction.y) - 16)));
 		}
 		//otherwise set position outside window
 		else {

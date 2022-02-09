@@ -50,7 +50,6 @@ Player::Player() {
 
 void Player::start() {
     
-    playerSP.setOrigin(27, 27);
     playerSP.setTexture(downIdle);
     playerSP.setPosition(sf::Vector2f(570, 208));
     playerSP.setScale(sf::Vector2f(1.5, 1.5));
@@ -117,15 +116,13 @@ void Player::loop(float dt, sf::RenderWindow& window, Weapon& Weapon, sf::FloatR
                 }
             }
 
-
-
             //if no key is pressed change to idle
             if (!yKeyPressed && !xKeyPressed) {
                 playerSP.setTexture(downIdle);
             }
 
             //to prevent infinite acceleration
-            float drag = 0.999;
+            float drag = (float)0.999;
             velx *= drag;
             vely *= drag;
 
@@ -223,7 +220,7 @@ void Player::loop(float dt, sf::RenderWindow& window, Weapon& Weapon, sf::FloatR
             //set animation depending on mouse position
             //define constants
             float direction = 0;
-            float pi = 3.14159265359;
+            float pi = (float)3.14159265359;
             //calculate direction of mouse
             float deltax = playerPos.x - sf::Mouse::getPosition(window).x;
             float deltay = playerPos.y - sf::Mouse::getPosition(window).y;
@@ -248,11 +245,16 @@ void Player::loop(float dt, sf::RenderWindow& window, Weapon& Weapon, sf::FloatR
                 playerSP.setTexture(leftattack);
             }
         }
+        else {
+            playerSP.setOrigin(5, 14);
+        }
 
-        //instantly die for testing
+        //instantly die for testing only
+        /*
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::M)) {
             takeDamage(100);
         }
+        */
 
         //set immunity frames timers
         takeDElapsed = takeDClock.getElapsedTime();
@@ -309,7 +311,7 @@ void Player::attack(sf::Event &event, Weapon &Weapon) {
 }
 
 //damage function
-void Player::takeDamage(int dam) {
+void Player::takeDamage(float dam) {
     if (ableToTakeDam) {
 
         takeDClock.restart();
@@ -329,10 +331,11 @@ void Player::draw(sf::RenderWindow& window) {
 
 //animation function
 void Player::animate() {
+
     if (animationSec < 0.16) {
 
         //check if were attacking
-        if (playerSP.getTexture() == &downattack || &upattack || &leftattack || &rightattack) {
+        if (isAttacking) {
             playerSP.setTextureRect(sf::IntRect(4, 5, 55, 54));
         }
         else {
@@ -343,7 +346,7 @@ void Player::animate() {
     if (animationSec > 0.16) {
 
         //check if were attacking
-        if (playerSP.getTexture() == &downattack || &upattack || &leftattack || &rightattack) {
+        if (isAttacking) {
             playerSP.setTextureRect(sf::IntRect(69, 5, 55, 54));
         }
         else {
@@ -354,7 +357,7 @@ void Player::animate() {
     if (animationSec > 0.33) {
 
         //check if were attacking
-        if (playerSP.getTexture() == &downattack || &upattack || &leftattack || &rightattack) {
+        if (isAttacking) {
 
             playerSP.setTextureRect(sf::IntRect(4, 69, 55, 54));
         }
@@ -366,7 +369,7 @@ void Player::animate() {
     if (animationSec > 0.5) {
 
         //check if were attacking
-        if (playerSP.getTexture() == &downattack || &upattack || &leftattack || &rightattack) {
+        if (isAttacking) {
             animationClock.restart();
             isAttacking = false;
         }
@@ -377,6 +380,10 @@ void Player::animate() {
     }
     if (animationSec > 0.66) {
 
+        if (playerSP.getTexture() == &downIdle) {
+
+            animationClock.restart();
+        }
        playerSP.setTextureRect(sf::IntRect(25, 81, 14, 32));
     }
     if (animationSec > 0.83) {
@@ -398,4 +405,9 @@ void Player::intro() {
 
     //animate idle animation
     playerSP.setTexture(downIdle);
+}
+
+//reset the health
+void Player::resetHealth() {
+    Phealth = 100;
 }

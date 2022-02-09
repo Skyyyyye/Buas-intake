@@ -28,23 +28,19 @@ void Enemy::start() {
 //main loop function
 void Enemy::loop(float dt, sf::Vector2f playerPos, sf::FloatRect playerRect, Player &Player, sf::FloatRect weaponRect, Weapon &Weapon) {
 
-    //update wave timers
-    waveElapsed = waveClock.getElapsedTime();
-    waveSec = waveElapsed.asSeconds();
-
     //update damage giving timers
     giveDamElapsed = giveDamClock.getElapsedTime();
     giveDamSec = giveDamElapsed.asSeconds();
 
     //for the need amount of enemies
-    for (int i = 0; i < (wave * 3); i++) {
+    for (int i = 0; i < desiredEnemy; i++) {
 
         //update immunity frame timers
         takeDElapsed[i] = takeDClock[i].getElapsedTime();
         takeDSec[i] = takeDElapsed[i].asSeconds();
 
         //if the enemy is alive
-        if (EHealth[i] > 1) {
+        if (EHealth[i] > 0) {
 
             //check if intersecting with player or weapon
             sf::FloatRect EboundingBox = enemySP[i].getGlobalBounds();
@@ -60,13 +56,16 @@ void Enemy::loop(float dt, sf::Vector2f playerPos, sf::FloatRect playerRect, Pla
                         firstGive = false;
                     }
                     //time is over ;)
-                    if (giveDamSec > 0.5) {
+                    if (giveDamSec > 1) {
 
                         Player.takeDamage(damage);
                         firstGive = true;
                     }
                         
                 }
+            }
+            else {
+                firstGive = false;
             }
             //check if the enemy is being attacked
             if (takeDSec[i] > 0.5) {
@@ -90,10 +89,16 @@ void Enemy::loop(float dt, sf::Vector2f playerPos, sf::FloatRect playerRect, Pla
         }
     }
 
+    //update wave timers
+    waveSec = waveClock.getElapsedTime().asSeconds();
+
     //check if all the enemy's are dead. if yes, start the new wave
-    if (enemyCount <= 0) {
+    if (enemyCount == 0) {
 
         nextWave();
+
+        //refresh the player health
+        Player.resetHealth();
     }
 }
 
@@ -103,34 +108,38 @@ void Enemy::takeDamage(int i, int WeaponDam) {
    //take the damage
    EHealth[i] = EHealth[i] - WeaponDam;
 
+   //if the enemy dies by the attack
+   if (EHealth[i] <= 0) {
+
+       enemyCount--;
+
+       //if this was the last enemy, start a new wave
+       if (enemyCount == 0) {
+           waveClock.restart();
+       }
+   }
+
    //reset immunity frames
    takeDClock[i].restart();
-
-   //if the enemy dies by the attack
-   if (EHealth[i] < 1) {
-       enemyCount--;
-       waveClock.restart();
-   }
 }
 
 //initiate the next wave
 void Enemy::nextWave() {
 
-    if (waveSec >= 1) {
-
+    if (waveSec >= 2) {
         //increase the wave
         wave++;
 
         //calculate the amount of enemy's to spawn
-        int DE = wave * 3;
+        desiredEnemy = wave * 3;
 
         //initiate the wave
-        initialize(DE);
+        initialize();
     }
 }
 
 //initiate a wave (called by nextWave)
-void Enemy::initialize(int desiredEnemy) {
+void Enemy::initialize() {
 
     //repeat for the needed enemies
     for (int i = 0; i < desiredEnemy; i++) {
@@ -138,11 +147,11 @@ void Enemy::initialize(int desiredEnemy) {
         //generate random numbers for spawns
         if (firstRandom)
         {
-            srand(time(NULL)); //seeding for the first time only
+            srand((unsigned int)time(NULL)); //seeding for the first time only
             firstRandom = false;
         }
-        float randx = 2 + rand() % ((100 + 1) - 2);
-        float randy = 100 + rand() % ((600 + 1) - 100);
+        int randx = 30 + rand() % ((100 + 1) - 30);
+        int randy = 100 + rand() % ((550 + 1) - 100);
 
         //set textures
         for (int i = 0; i < desiredEnemy; i++) {
@@ -150,11 +159,11 @@ void Enemy::initialize(int desiredEnemy) {
         }
 
         //random number for texture
-        float randTex = 48 *(1 + rand() % ((6 + 1) - 1));
+        int randTex = 48 *(1 + rand() % ((6 + 1) - 1));
         enemySP[i].setTextureRect(sf::IntRect(randTex, 53, 45, 51));
 
         //set position
-        enemySP[i].setPosition(sf::Vector2f(randx, randy));
+        enemySP[i].setPosition(sf::Vector2f((float)randx, (float)randy));
 
         //set enemy active
         EHealth[i] = 100;
@@ -165,7 +174,7 @@ void Enemy::initialize(int desiredEnemy) {
 //draw function
 void Enemy::draw(sf::RenderWindow &window) {
 
-    for (int i = 0; i < (wave * 3); i++) {
+    for (int i = 0; i < desiredEnemy; i++) {
 
             window.draw(enemySP[i]);
     }

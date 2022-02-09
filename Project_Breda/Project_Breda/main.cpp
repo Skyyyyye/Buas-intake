@@ -3,8 +3,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
-
-//class refrencesgiu
+//class refrences
 #include "Player.h"
 #include "Enemy.h"
 #include "Weapon.h"
@@ -14,7 +13,7 @@
 #include "Intro.h"
 
 /*
-* 
+
 library and code sources:
 https://github.com/wagnrd/SFMLMath/wiki
 https://www.sfml-dev.org/tutorials/2.5/
@@ -40,9 +39,13 @@ https://lelex-game-and-art-maker.itch.io/fire-animated
 
     int main()
     {
+        //refrence sources
+        std::string sources = "made with SFML \n  https://www.sfml-dev.org/ \nused code from \n  https://www.sfml-dev.org/tutorials/2.5/ \nused a SFML 3rd party math library: \n  https://github.com/wagnrd/SFMLMath/ \ntextures and animations from: \n  https://route1rodent.itch.io/16x16-rpg-character-sprite-sheet \n  https://managore.itch.io/m5x7 \n  https://rmw-restaff.itch.io/restaff-december-2021 \n  https://vectorpixelstar.itch.io/textures \n  https://fliflifly.itch.io/hearts-and-health-bar \n  https://stealthix.itch.io/rpg-nature-tileset \n  https://pixellad.itch.io/colorful-text-game-ui-kit \n  https://lelex-game-and-art-maker.itch.io/fire-animated";
+        std::cout << sources;
+
 
         // create the window
-        sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+        sf::RenderWindow window(sf::VideoMode(800, 600), "the snowman's rise");
 
         //create refrences
         Player Player;
@@ -73,7 +76,7 @@ https://lelex-game-and-art-maker.itch.io/fire-animated
                 //check for restart button
                 if (!Intro.stillIntro) {
                     if (Player.Phealth <= 0) {
-                        UI.checkButtonNeeded(Player.Phealth, event);
+                        UI.checkButtonNeeded(event);
                     }
                 }
             }
@@ -89,7 +92,7 @@ https://lelex-game-and-art-maker.itch.io/fire-animated
                 Enemy.loop(dt, Player.playerPos, Player.playerRect, Player, Weapon.weaponRect, Weapon);
                 Weapon.loop(Player.playerPos, window, dt, Player.Phealth);
                 Trail.loop(Player.playerPos);
-                UI.loop(Player.Phealth, window, Enemy.wave);
+                UI.loop(Player.Phealth, window, Enemy.wave, dt, Enemy.waveSec);
 
                 // clear the window with black color
                 window.clear(sf::Color::Black);
@@ -118,7 +121,7 @@ https://lelex-game-and-art-maker.itch.io/fire-animated
                     UI.restart = false;
                 }
             }
-            //intro loop for 20 sec
+            //intro loop
             else {
                 
                 //main loops

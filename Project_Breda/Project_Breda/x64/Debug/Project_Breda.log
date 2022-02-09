@@ -1,27 +1,12 @@
-﻿  Enemy.cpp
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\Enemy.h(39,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\Enemy.cpp(141,23): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\Enemy.cpp(144,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\Enemy.cpp(145,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\Enemy.cpp(153,23): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\Enemy.cpp(154,47): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\SFMLMath.hpp(143,25): warning C4244: 'argument': conversion from 'const double' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\Enemy.cpp(82): message : see reference to function template instantiation 'T sf::getNormalized<sf::Vector2<float>>(const T &)' being compiled
-          with
-          [
-              T=sf::Vector2<float>
-          ]
-C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\Project_Breda\SFMLMath.hpp(143,19): warning C4244: 'argument': conversion from 'const double' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
+﻿  Background.cpp
+  Enemy.cpp
+  Entity.cpp
+  Health.cpp
+  Intro.cpp
+  Player.cpp
+  Trail.cpp
+  UI.cpp
+  Weapon.cpp
+  Generating Code...
+  main.cpp
   Project_Breda.vcxproj -> C:\Users\wouter\Documents\breda_project\breda_project\Project_Breda\x64\Debug\Project_Breda.exe

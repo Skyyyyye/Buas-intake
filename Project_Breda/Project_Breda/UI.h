@@ -7,9 +7,9 @@ public:
 
     //functions
     UI();
-    void loop(int health, sf::RenderWindow &window, int wave);
+    void loop(float health, sf::RenderWindow &window, int wave, float dt, float waveSec);
     void draw(sf::RenderWindow &window);
-    void checkButtonNeeded(int health, sf::Event& event);
+    void checkButtonNeeded(sf::Event& event);
 
     //for restarting the game
     bool restart = false;
@@ -21,6 +21,8 @@ private:
     sf::Text restartText;
     sf::Text waveText;
     sf::Color waveColor = sf::Color(41, 41, 41, 255);
+    sf::Text restartText2;
+    sf::Text nextWaveText;
 
     //health sprite
     sf::Texture healthTex;
@@ -31,6 +33,20 @@ private:
     sf::Sprite restartButtonSP;
     bool buttonNeeded = false;
     bool hovering = false;
+
+    //snow sprite
+    sf::Texture snowTex;
+    sf::Sprite snowSP[2];
+
+    //snow animation
+    sf::Clock animationClock;
+    sf::Time animationTime;
+    float animationSec = 0;
+
+    bool left[2];
+    bool right[2];
+
+    bool waveSecSmall = false;
 
 protected:
 

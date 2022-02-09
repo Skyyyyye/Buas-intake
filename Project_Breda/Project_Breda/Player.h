@@ -11,16 +11,17 @@ public:
 	void draw(sf::RenderWindow& window);
 	void loop(float dt,sf::RenderWindow &window, Weapon &Weapon, sf::FloatRect iceRect);
 	void attack(sf::Event& event, Weapon &Weapon);
-	void takeDamage(int dam);
+	void takeDamage(float dam);
 	void animate();
 	void intro();
+	void resetHealth();
 
 	//communicate positions
 	sf::Vector2f playerPos;
 	sf::FloatRect playerRect;
 
 	//health
-	int Phealth = 100;
+	float Phealth = 100;
 
 	//communicate damage immunity frames
 	float takeDSec;

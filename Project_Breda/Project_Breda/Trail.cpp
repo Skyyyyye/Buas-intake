@@ -8,7 +8,7 @@ Trail::Trail() {
     }
     for (int i = 0; i < 50; i++) {
         trailSP[i].setTexture(trailTex);
-        spawn[i] = false;
+        trailSP[i].setPosition(sf::Vector2f(-100, -100));
     }
 
     //set default position
@@ -20,7 +20,7 @@ void Trail::loop(sf::Vector2f playerPos) {
 
     //calculate the distance
     sf::Vector2f distCalc = playerPos - prevPos;
-    distance = abs(sqrt(pow(distCalc.x, 2) + pow(distCalc.y, 2)));
+    distance = (float)abs(sqrt(pow(distCalc.x, 2) + pow(distCalc.y, 2)));
 
     //if the distance is over the limit, activate the trail sprite
     if (distance > 15) {

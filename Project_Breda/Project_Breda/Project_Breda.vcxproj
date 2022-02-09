@@ -191,6 +191,7 @@
     <Image Include="recources\player.png" />
     <Image Include="recources\rightattack.png" />
     <Image Include="recources\rightwalk.png" />
+    <Image Include="recources\snoww.png" />
     <Image Include="recources\trail.png" />
     <Image Include="recources\upattack.png" />
     <Image Include="recources\upwalk.png" />
